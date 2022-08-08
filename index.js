@@ -83,6 +83,7 @@ function getAllCurrency(){
         const parsedConversionRates = Object.entries(conversionRates)
         const currencyData = parsedConversionRates.map(([name, rate]) => ({name, rate}))
         return currencyData.forEach(rateNamePair => addRatesToBox(rateNamePair))
+        //look at this!
     })   
 }
 
