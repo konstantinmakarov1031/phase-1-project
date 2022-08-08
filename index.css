@@ -1,0 +1,26 @@
+body {
+    background-color: lightgray;
+}
+
+
+html {
+    font-size: 13px; 
+    font-family: "Open Sans", sans-serif;
+}
+
+
+body {
+    text-align: center;
+}
+
+
+
+select.dropdown {
+    width: 200px;
+    text-align: center;
+}
+
+
+
+
+

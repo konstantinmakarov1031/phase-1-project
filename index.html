@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
-//www.travellershelper.io//
-
     
 <head> 
 
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Traveller's Helper</title>
-
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
     <script defer src="index.js"></script>
-
+ 
 </head>
 
-
 <body> 
+
     <header id="intro">
 
-        <h1> Current Currency Conversion Rates</h1>
+        <h1> travellershelper.io</h1>
 
-        <p id="introParagraph"> <strong> In this section, you can input any amount of any currency, and see the current exchange
-            rate in any other supported currency. <Br> <br> Please select a currency from the drop down menu, 
-            and an amount of said currency. 
-        </strong>
+        <p id="introParagraph"> <strong> A Simple Currency Conversion App </strong><Br> <br> Select A Currency To Convert
         
         </p>
 
@@ -33,34 +30,77 @@
     </header>
 
 
-    <div class="container">
 
-        <label for="currency">Select A Currency</label><br>
+<div class="dropdowns">
 
-        <select name="currency" id="currency"> 
-            <option value="usd">USD</option>
-            <option value="euro">EURO</option>
-            <option value="gbp">GBP</option>
-        </select>
+    <div id="selectionOfCurrency">
 
+        <label for="currency">Select Currency</label>
+        
+        <br>
 
+            <select name="initialCurrency" class="dropdown" id="initialCurrency" > 
+                <option value="USD">USD</option>
+            </select>
 
         <br><br>
 
+    </div>
+    
+    <div id="selectionOfSecondCurrency">
+        <label for="currency">Convert To</label>
+
+        <br>
+
+            <select name="convertToCurrency" class="dropdown" value='' id="convertToCurrency" onchange="populateConversionValues(event)" >
+            
+            </select>
+    </div>
+
+        <br><br>
+
+</div>        
+
+<!-- LOOK AT AROUND 07:02 FORMS VIDEO  -->
 
 
         <label for="currencyAmount">Currency Amount</label><br>
-        <input type="text" id="currencyAmount" class="currencyInput" name="currencyAmount"> <br><br>
+        <form id="currencyAmount" onsubmit="buildConversion(event)">
+            <div class="field">
+                <input id="currencyConversion" type="text" placeholder="Currency" />
+                <input type="submit" class="button" value="Convert Currency" />
+            </div>
+                
+        </form>
+     
+        <br>      
 
-
-
-        <br>
-        
-        
-        <button id="convert" class="button" type="convert">Convert Currency</button>
+        <div id="conversionAmount">
+            <h3>Your Conversion Is</h3><br> 
+                <p id="conversionResult"> </p>
+            
+        </div>
+             <br>
 
     </div>
 
+
+   
+    <div class="history">
+        
+        <div id="history">
+            <h3>Past Conversions</h3>
+
+            <button type="reset" id = "clearHistoryButton" class="button" onclick="clearHistory()"/>Clear History</button>
+
+            <div id="conversionHistory">
+                               
+
+            </div> 
+                
+                
+        </div>    
+    </div>
 
 
 
