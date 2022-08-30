@@ -34,6 +34,7 @@ function populateConversionValues(e){
     e.preventDefault() 
     const conversionRate = e.target.value
     const dropDown = document.getElementById('convertToCurrency')
+
 }
 
 
@@ -68,7 +69,7 @@ initialize();
 //and uses another event listener built inside of the HTML file (the onsubmit) to call the buildConversion function. 
 document.addEventListener('DOMContentLoaded', () => {
     let mainForm = document.querySelector('form')
-    mainForm.addEventListener('submit', (e) => {
+    mainForm.addEventListener('submit', (e) => {  
     e.preventDefault() 
     handleCurrencyConversion(e.target.currencyConversion.value) 
     mainForm.reset() 
@@ -95,3 +96,8 @@ function handleCurrencyConversion(currencyConversion){
 function clearHistory() {
     document.getElementById('historyList').remove()
 }
+
+const clearHistoryButton = document.getElementById('clearHistoryButton')
+clearHistoryButton.addEventListener('click', clearHistory)
+
+
