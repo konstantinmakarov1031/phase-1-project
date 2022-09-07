@@ -1,17 +1,21 @@
 //This is our fetch function, where we grab all of the information from the API. Furthermore, in this function, we also map over the key value pair of name and rate using Object, 
 //and are thus able to use them separately as opposed to as a pair. 
+
+
+
 function getAllCurrency(){
     fetch('https://v6.exchangerate-api.com/v6/cf0cb3636d1863b4bab3e6a1/latest/USD')
     .then(res => {
         return res.json()
     })
+
     .then(currencyList => {
         const {conversion_rates: conversionRates} = currencyList
         const parsedConversionRates = Object.entries(conversionRates)
-        const currencyData = parsedConversionRates.map(([name, rate]) => ({name, rate}))
+        const currencyData = parsedConversionRates.map(([name, rate]) => ({name, rate})) 
         return currencyData.forEach(rateNamePair => addRatesToBox(rateNamePair))
         
-    })   
+    })  
 }
 
 
@@ -22,7 +26,7 @@ function addRatesToBox({name, rate}){
     let dropdown = document.getElementById('convertToCurrency')
     let option = document.createElement('option')
     option.id = 'currencyToConvertSelection' 
-    option.value = `${rate}`
+    option.value = rate + " " + name  
     option.innerText = `${name}`
     dropdown.appendChild(option)    
 }
@@ -46,8 +50,13 @@ function buildConversion(e){
     const baseRate = e.target.currencyConversion.value 
     const dropDownMenu = document.getElementById('convertToCurrency')
     const rate = dropDownMenu.value 
+    const currencyRateAndName = rate.split(" ")
+    const currencyRate = currencyRateAndName[0]
+    const currencyName = currencyRateAndName[1] 
+    console.log(currencyRate)
+    console.log(currencyName)
     const conversionResult = document.getElementById('conversionResult')
-    conversionResult.innerText = baseRate * rate
+    conversionResult.innerText = baseRate * currencyRate + ` ${currencyName}`  
 }
 
 
@@ -55,6 +64,7 @@ function buildConversion(e){
 //This is where we set getAllCurrency as our callback function. 
 function initialize(){
     getAllCurrency()
+    // console.log(currencyRate) 
     // currencyList.forEach(rates => addRatesToBox(rates))
 }
 
@@ -67,14 +77,19 @@ initialize();
 
 //This is one of our addEventListener functions. This function takes the currency input form, waits for a submit event to happen on it (which is the submit button being clicked), 
 //and uses another event listener built inside of the HTML file (the onsubmit) to call the buildConversion function. 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', doStuff) 
+
+function doStuff() {
     let mainForm = document.querySelector('form')
     mainForm.addEventListener('submit', (e) => {  
     e.preventDefault() 
     handleCurrencyConversion(e.target.currencyConversion.value) 
     mainForm.reset() 
     })
-})
+}
+
+//Changed from previous assessment 
+
 
 
 
